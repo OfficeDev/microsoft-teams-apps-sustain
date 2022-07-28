@@ -1,0 +1,90 @@
+#LearnMore {
+    .navigation {
+        padding: 8px;
+
+        .back svg {
+            height: 25px;
+            width: 25px;
+        }
+    }
+
+    .content {
+        width: 100%;
+
+        .challenge {
+            width: 100%;
+            padding: 15px;
+
+            .challenge-card {
+                width: 100%;
+
+
+                .challenge-thumbnail {
+                    position: relative;
+
+                    &>img {
+                        min-height: 100px;
+                        width: 200px;
+                        object-fit: cover;
+                    }
+
+                    span.challenge-point {
+                        height: 28px;
+                        color: #252423;
+                        font-size: 16px;
+                        font-weight: 600;
+                        background-color: #FFAA44 !important;
+                        padding: 2px 12px;
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                    }
+
+                    .challenge-point.point-container-daily {
+                        background-color: #FBF6D9 !important;
+                    }
+                }
+
+                .challenge-header {
+                    margin-left: 20px;
+
+                    button {
+                        margin-top: 20px;
+                    }
+                }
+
+                .challenge-body {
+                    margin-top: 20px;
+
+                    .description {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+
+        .challenge-info {
+            padding: 15px 20px;
+
+            .stats {
+                margin-top: 10px;
+
+                span {
+                    background-color: transparent;
+                }
+
+                img {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .related-users {
+            padding: 15px 20px;
+
+            &>div {
+                margin-top: 20px
+            }
+        }
+    }
+}

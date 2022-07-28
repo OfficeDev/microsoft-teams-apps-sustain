@@ -1,0 +1,52 @@
+#HomeChallenges {
+    padding: 10px;
+    margin-right: -15px;
+
+    .challenge-card {
+        padding: 12px;
+        width: calc((100% - 30px) / 2);
+        min-width: 350px;
+        min-height: 250px;
+        margin: 15px 15px 0 0;
+
+        .title {
+            cursor: pointer;
+        }
+
+        .thumbnail-image {
+            height: 100%;
+            width: 150px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .point-container-daily {
+            background-color: #FBF6D9 !important;
+        }
+
+        .challenge-point {
+            height: 28px;
+            color: #252423;
+            font-size: 0.8rem;
+            font-weight: 600;
+            position: absolute;
+            background-color: #FFAA44;
+            padding: 2px 12px;
+            border-radius: 20px;
+            right: calc(100% - 155px);
+            top: 20px;
+        }
+
+        .status {
+            padding: 2px 12px;
+            height: 28px;
+            color: #252423;
+            background-color: #E8EBFA;
+            top: 9px;
+            left: 6px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+    }
+}

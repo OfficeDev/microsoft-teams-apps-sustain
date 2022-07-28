@@ -1,0 +1,33 @@
+#Carousel {
+    padding: 10px;
+    min-height: 250px;
+    width: 100%;
+
+    .carousel-container {
+        max-width: 587px;
+        max-height: 250px;
+    }
+
+    .carousel-card {
+        height: 250px;
+    }
+
+    .carousel-image-container {
+        max-height: 172.52px !important;
+        width: 100%;
+        background-color: white !important;
+    }
+
+    .carousel-image {
+        height: 172.52px !important;
+        min-width: 100%;
+        max-width: 587px !important;
+        object-fit: cover;
+        border-radius: 3px;
+    }
+}
+
+#Carousel>div,
+#Carousel div>div {
+    width: 100%;
+}

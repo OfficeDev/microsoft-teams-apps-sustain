@@ -1,0 +1,1802 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vulnerabilityAssessments_Default_storageContainerPath": {
+      "type": "SecureString"
+    },
+    "sites_sustain_api_name": {
+      "defaultValue": "sustain-api",
+      "type": "String"
+    },
+    "sites_sustain_web_name": {
+      "defaultValue": "sustain-web",
+      "type": "String"
+    },
+    "servers_sustain_sqlserver_name": {
+      "defaultValue": "sustain-sqlserver",
+      "type": "String"
+    },
+    "serverfarms_sustain_api_asp_name": {
+      "defaultValue": "sustain-api-asp",
+      "type": "String"
+    },
+    "serverfarms_sustain_web_asp_name": {
+      "defaultValue": "sustain-web-asp",
+      "type": "String"
+    },
+    "vaults_sustain_keyvault_name": {
+      "defaultValue": "sustain-keyvault",
+      "type": "String"
+    },
+    "storageAccounts_sustainblob_name": {
+      "defaultValue": "sustainblob",
+      "type": "String"
+    },
+    "default_sql_admin": {
+      "defaultValue": "adm1n",
+      "type": "String"
+    },
+    "default_sql_password": {
+      "defaultValue": "[concat('P', uniqueString(resourceGroup().id, deployment().name, '224F5A8B-51DB-46A3-A7C8-59B0DD584A41'), 'x', '!')]",
+      "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[parameters('vaults_sustain_keyvault_name')]",
+      "location": "eastus",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "Standard"
+        },
+        "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+        "accessPolicies": [
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "67b0a19e-2867-4ec9-bd4d-7af32fde8cef",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          },
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "30e86521-fa61-40ee-a883-45df15ae3bda",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          },
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "e6473aac-73ba-4f67-af3b-fa95c4bd7ea4",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List"
+              ],
+              "secrets": [
+                "Get",
+                "List"
+              ],
+              "certificates": []
+            }
+          },
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "b8c6175c-6591-4cf4-86ed-a223e7ceccc4",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          },
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "157d1871-bea9-43f1-9c9c-6337541aaaf1",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          },
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "efb083fe-82ad-4409-bcc5-7ef7577e6cd0",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          },
+          {
+            "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691",
+            "objectId": "b7fa63a3-1584-43d8-8512-744c8d0b8783",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          }
+        ],
+        "enabledForDeployment": false,
+        "enabledForDiskEncryption": false,
+        "enabledForTemplateDeployment": false,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 90,
+        "enableRbacAuthorization": false,
+        "vaultUri": "[concat('https://', parameters('vaults_sustain_keyvault_name'), '.vault.azure.net/')]",
+        "provisioningState": "Succeeded",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[parameters('servers_sustain_sqlserver_name')]",
+      "location": "eastus",
+      "kind": "v12.0",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('default_sql_admin')]",
+        "administratorLoginPassword": "[parameters('default_sql_password')]",
+        "version": "12.0",
+        "restrictOutboundNetworkAccess": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-09-01",
+      "name": "[parameters('storageAccounts_sustainblob_name')]",
+      "location": "eastus",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "dnsEndpointType": "Standard",
+        "defaultToOAuthAuthentication": false,
+        "publicNetworkAccess": "Enabled",
+        "allowCrossTenantReplication": true,
+        "minimumTlsVersion": "TLS1_2",
+        "allowBlobPublicAccess": true,
+        "allowSharedKeyAccess": true,
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "requireInfrastructureEncryption": false,
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('serverfarms_sustain_api_asp_name')]",
+      "location": "East US",
+      "sku": {
+        "name": "F1",
+        "tier": "Free",
+        "size": "F1",
+        "family": "F",
+        "capacity": 0
+      },
+      "kind": "app",
+      "properties": {
+        "perSiteScaling": false,
+        "elasticScaleEnabled": false,
+        "maximumElasticWorkerCount": 0,
+        "isSpot": false,
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0,
+        "zoneRedundant": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('serverfarms_sustain_web_asp_name')]",
+      "location": "East US",
+      "sku": {
+        "name": "F1",
+        "tier": "Free",
+        "size": "F1",
+        "family": "F",
+        "capacity": 0
+      },
+      "kind": "app",
+      "properties": {
+        "perSiteScaling": false,
+        "elasticScaleEnabled": false,
+        "maximumElasticWorkerCount": 0,
+        "isSpot": false,
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0,
+        "zoneRedundant": false
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('vaults_sustain_keyvault_name'), '/sustain-appreg-secret')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_sustain_keyvault_name'))]"
+      ],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('vaults_sustain_keyvault_name'), '/sustain-appreg-secret-local')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_sustain_keyvault_name'))]"
+      ],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('vaults_sustain_keyvault_name'), '/sustain-appreg-secret-uat')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_sustain_keyvault_name'))]"
+      ],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('vaults_sustain_keyvault_name'), '/sustain-blob-connectionstring')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_sustain_keyvault_name'))]"
+      ],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('vaults_sustain_keyvault_name'), '/sustain-blob-key')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_sustain_keyvault_name'))]"
+      ],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('vaults_sustain_keyvault_name'), '/sustain-sql-connection-string')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_sustain_keyvault_name'))]"
+      ],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/administrators",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/ActiveDirectory')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "administratorType": "ActiveDirectory",
+        "login": "MarcAbellana@m365x88317149.onmicrosoft.com",
+        "sid": "b8c6175c-6591-4cf4-86ed-a223e7ceccc4",
+        "tenantId": "8da3f43c-16aa-44d8-a53c-82a4700f0691"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advancedThreatProtectionSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/CreateIndex')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/DbParameterization')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/DefragmentIndex')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/DropIndex')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/ForceLastGoodPlan')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/auditingPolicies",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "auditingState": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/auditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "auditActionsAndGroups": [],
+        "isStorageSecondaryKeyInUse": false,
+        "isAzureMonitorTargetEnabled": false,
+        "isManagedIdentityInUse": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/azureADOnlyAuthentications",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "azureADOnlyAuthentication": false
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/connectionPolicies",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/default')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "connectionType": "Default"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb')]",
+      "location": "eastus",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "sku": {
+        "name": "Basic",
+        "tier": "Basic",
+        "capacity": 5
+      },
+      "kind": "v12.0,user",
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": 104857600,
+        "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+        "zoneRedundant": false,
+        "readScale": "Disabled",
+        "requestedBackupStorageRedundancy": "Local",
+        "maintenanceConfigurationId": "/subscriptions/e4a64f2c-22d9-4ff3-b490-f43b7c1a0cc1/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
+        "isLedgerOn": false
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advancedThreatProtectionSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/auditingPolicies",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "auditingState": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/auditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/extendedAuditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/ledgerDigestUploads",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Current')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled",
+        "disabledAlerts": [
+          ""
+        ],
+        "emailAddresses": [
+          ""
+        ],
+        "emailAccountAdmins": false,
+        "retentionDays": 0
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Current')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/vulnerabilityAssessments",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/master/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "recurringScans": {
+          "isEnabled": false,
+          "emailSubscriptionAdmins": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/devOpsAuditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/encryptionProtector",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/current')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "kind": "servicemanaged",
+      "properties": {
+        "serverKeyName": "ServiceManaged",
+        "serverKeyType": "ServiceManaged",
+        "autoRotationEnabled": false
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/extendedAuditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "auditActionsAndGroups": [],
+        "isStorageSecondaryKeyInUse": false,
+        "isAzureMonitorTargetEnabled": false,
+        "isManagedIdentityInUse": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/AllowAllWindowsAzureIps')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/keys",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/ServiceManaged')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "kind": "servicemanaged",
+      "properties": {
+        "serverKeyType": "ServiceManaged"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/securityAlertPolicies",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled",
+        "disabledAlerts": [
+          ""
+        ],
+        "emailAddresses": [
+          ""
+        ],
+        "emailAccountAdmins": false,
+        "retentionDays": 0
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/vulnerabilityAssessments",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "recurringScans": {
+          "isEnabled": false,
+          "emailSubscriptionAdmins": true
+        },
+        "storageContainerPath": "[parameters('vulnerabilityAssessments_Default_storageContainerPath')]"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2021-09-01",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
+      ],
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "changeFeed": {
+          "enabled": false
+        },
+        "restorePolicy": {
+          "enabled": false
+        },
+        "containerDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        },
+        "cors": {
+          "corsRules": []
+        },
+        "deleteRetentionPolicy": {
+          "allowPermanentDelete": false,
+          "enabled": true,
+          "days": 7
+        },
+        "isVersioningEnabled": false
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices",
+      "apiVersion": "2021-09-01",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
+      ],
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "protocolSettings": {
+          "smb": {}
+        },
+        "cors": {
+          "corsRules": []
+        },
+        "shareDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/queueServices",
+      "apiVersion": "2021-09-01",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
+      ],
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/tableServices",
+      "apiVersion": "2021-09-01",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
+      ],
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('sites_sustain_api_name')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_sustain_api_asp_name'))]"
+      ],
+      "kind": "app",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "[concat(parameters('sites_sustain_api_name'), '.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(parameters('sites_sustain_api_name'), '.scm.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_sustain_api_asp_name'))]",
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {
+          "numberOfWorkers": 1,
+          "acrUseManagedIdentityCreds": false,
+          "alwaysOn": false,
+          "http20Enabled": false,
+          "functionAppScaleLimit": 0,
+          "minimumElasticInstanceCount": 0
+        },
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": true,
+        "clientCertEnabled": false,
+        "clientCertMode": "Required",
+        "hostNamesDisabled": false,
+        "customDomainVerificationId": "F80E45E9C481A25CC85D4144860C091E8C84D11474A31680603AA30ACC89BFA0",
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": true,
+        "redundancyMode": "None",
+        "storageAccountRequired": false,
+        "keyVaultReferenceIdentity": "SystemAssigned"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('sites_sustain_web_name')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_sustain_web_asp_name'))]"
+      ],
+      "kind": "app",
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "[concat(parameters('sites_sustain_web_name'), '.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(parameters('sites_sustain_web_name'), '.scm.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_sustain_web_asp_name'))]",
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {
+          "numberOfWorkers": 1,
+          "acrUseManagedIdentityCreds": false,
+          "alwaysOn": false,
+          "http20Enabled": false,
+          "functionAppScaleLimit": 0,
+          "minimumElasticInstanceCount": 0
+        },
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": true,
+        "clientCertEnabled": false,
+        "clientCertMode": "Required",
+        "hostNamesDisabled": false,
+        "customDomainVerificationId": "F80E45E9C481A25CC85D4144860C091E8C84D11474A31680603AA30ACC89BFA0",
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": true,
+        "redundancyMode": "None",
+        "storageAccountRequired": false,
+        "keyVaultReferenceIdentity": "SystemAssigned"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_api_name'), '/ftp')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_api_name'))]"
+      ],
+      "properties": {
+        "allow": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/ftp')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "allow": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_api_name'), '/scm')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_api_name'))]"
+      ],
+      "properties": {
+        "allow": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/scm')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "allow": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_api_name'), '/web')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_api_name'))]"
+      ],
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php",
+          "hostingstart.html"
+        ],
+        "netFrameworkVersion": "v6.0",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2019",
+        "httpLoggingEnabled": true,
+        "acrUseManagedIdentityCreds": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": true,
+        "publishingUsername": "$sustain-api",
+        "scmType": "None",
+        "use32BitWorkerProcess": true,
+        "webSocketsEnabled": false,
+        "alwaysOn": false,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": false
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "vnetRouteAllEnabled": false,
+        "vnetPrivatePortsCount": 0,
+        "cors": {
+          "allowedOrigins": [
+            "https://sustain-web.azurewebsites.net",
+            "https://teams.microsoft.com",
+            "https://dev.teamsapps.local:3000"
+          ],
+          "supportCredentials": false
+        },
+        "localMySqlEnabled": false,
+        "managedServiceIdentityId": 8164,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "scmMinTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "preWarmedInstanceCount": 0,
+        "functionAppScaleLimit": 0,
+        "functionsRuntimeScaleMonitoringEnabled": false,
+        "minimumElasticInstanceCount": 0,
+        "azureStorageAccounts": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/web')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php",
+          "hostingstart.html"
+        ],
+        "netFrameworkVersion": "v6.0",
+        "requestTracingEnabled": false,
+        "requestTracingExpirationTime": "2022-07-14T02:24:00Z",
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2019",
+        "httpLoggingEnabled": false,
+        "acrUseManagedIdentityCreds": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": true,
+        "publishingUsername": "$sustain-web",
+        "scmType": "None",
+        "use32BitWorkerProcess": true,
+        "webSocketsEnabled": false,
+        "alwaysOn": false,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": false
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "vnetRouteAllEnabled": false,
+        "vnetPrivatePortsCount": 0,
+        "localMySqlEnabled": false,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "scmMinTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "preWarmedInstanceCount": 0,
+        "functionAppScaleLimit": 0,
+        "functionsRuntimeScaleMonitoringEnabled": false,
+        "minimumElasticInstanceCount": 0,
+        "azureStorageAccounts": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/023600a495b94b8faaa8ded3dde8b155')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-26T12:01:54.4923755Z",
+        "end_time": "2022-07-26T12:01:59.1642287Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/0296375bcf5e44efbdafe04883b767f8')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-26T13:41:20.8315584Z",
+        "end_time": "2022-07-26T13:41:24.1773271Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/0644b7c068ee4592844a46164f9e7b9f')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-22T12:50:07.5731723Z",
+        "end_time": "2022-07-22T12:50:11.1825332Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/2661e4d82dc44e29b16977355eae3481')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-22T14:47:53.5935319Z",
+        "end_time": "2022-07-22T14:47:57.1092246Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/4ed07871ae3c447dbaa500b6996160c6')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-22T14:02:57.4566762Z",
+        "end_time": "2022-07-22T14:03:00.9097965Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/5339c3b2d94e4209879591cfa574630f')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-22T13:23:50.5771327Z",
+        "end_time": "2022-07-22T13:23:54.0470171Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/a863841843ec4462b0a03049eed9ed71')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-22T12:51:48.4572784Z",
+        "end_time": "2022-07-22T12:51:51.9416454Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/b0dc0b1688a74fb3a9846d306e05ef47')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-26T13:28:49.7322207Z",
+        "end_time": "2022-07-26T13:28:53.0446847Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/d80711e8364a4d76aa05cd6d133d43fb')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-25T13:06:20.0329961Z",
+        "end_time": "2022-07-25T13:06:23.7837588Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/efb76047596b44ddbefc533be3185ab6')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "VS Code",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2022-07-26T14:18:46.8653831Z",
+        "end_time": "2022-07-26T14:18:50.2716203Z",
+        "active": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_api_name'), '/', parameters('sites_sustain_api_name'), '.azurewebsites.net')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_api_name'))]"
+      ],
+      "properties": {
+        "siteName": "sustain-api",
+        "hostNameType": "Verified"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_web_name'), '/', parameters('sites_sustain_web_name'), '.azurewebsites.net')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_web_name'))]"
+      ],
+      "properties": {
+        "siteName": "sustain-web",
+        "hostNameType": "Verified"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/siteextensions",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('sites_sustain_api_name'), '/Microsoft.AspNetCore.AzureAppServices.SiteExtension')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_sustain_api_name'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advancedThreatProtectionSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/CreateIndex')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/DbParameterization')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/DefragmentIndex')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/DropIndex')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/advisors",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/ForceLastGoodPlan')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "autoExecuteValue": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/auditingPolicies",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "auditingState": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/auditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "weeklyRetention": "PT0S",
+        "monthlyRetention": "PT0S",
+        "yearlyRetention": "PT0S",
+        "weekOfYear": 0
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 7,
+        "diffBackupIntervalInHours": 24
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/extendedAuditingSettings",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/ledgerDigestUploads",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Current')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Disabled",
+        "disabledAlerts": [
+          ""
+        ],
+        "emailAddresses": [
+          ""
+        ],
+        "emailAccountAdmins": false,
+        "retentionDays": 0
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Current')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "state": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/vulnerabilityAssessments",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[concat(parameters('servers_sustain_sqlserver_name'), '/sustain-sqldb/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_sustain_sqlserver_name'), 'sustain-sqldb')]",
+        "[resourceId('Microsoft.Sql/servers', parameters('servers_sustain_sqlserver_name'))]"
+      ],
+      "properties": {
+        "recurringScans": {
+          "isEnabled": false,
+          "emailSubscriptionAdmins": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2021-09-01",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default/challengebanners')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_sustainblob_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
+      ],
+      "properties": {
+        "immutableStorageWithVersioning": {
+          "enabled": false
+        },
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2021-09-01",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default/photos')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_sustainblob_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
+      ],
+      "properties": {
+        "immutableStorageWithVersioning": {
+          "enabled": false
+        },
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
+    }
+  ]
+}

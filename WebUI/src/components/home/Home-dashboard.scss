@@ -1,0 +1,95 @@
+#Dashboard {
+    padding: 10px;
+    min-width: 350px;
+
+    #Carousel {
+        min-height: 150px;
+        width: 100%;
+
+        .carousel-container {
+            max-width: 587px;
+            max-height: 150px;
+        }
+
+        .carousel-card {
+            max-height: 250px !important;
+            min-height: 250px !important;
+            max-width: 587px !important;
+        }
+
+        .carousel-image-container {
+            max-height: 172.52px !important;
+            width: 100%;
+        }
+
+        .carousel-image {
+            height: 172.52px !important;
+            min-width: 100%;
+            max-width: 587px !important;
+            object-fit: cover;
+            border-radius: 3px;
+            /* object-fit: cover; */
+        }
+    }
+
+    #Carousel>div,
+    #Carousel div>div {
+        width: 100%
+    }
+
+    .home-dashboard-badge {
+        text-align: center;
+        vertical-align: center;
+
+        .trophy {
+            width: 14px;
+            height: 14px;
+            margin: 0px 3px 0px 0px;
+        }
+    }
+
+    .home-dashboard-badge-icon-big {
+        width: 100px;
+        height: 100px;
+        padding-top: 20px;
+    }
+
+    .home-dashboard-badge-icon {
+        width: 70px;
+        height: 70px;
+        padding-top: 35px;
+    }
+
+    .personal-card {
+        height: 125px !important;
+        min-width: 100%;
+        max-width: 587px !important;
+        object-fit: cover;
+        border-radius: 4px 4px 0px 0px;
+        background-color: #E7F2DA;
+        color: #000000;
+        padding: 15px 15px 10px 15px;
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.07), 0px 1.6px 3.6px rgba(0, 0, 0, 0.11);
+    }
+
+    .personal-bg-white {
+        background-color: #ffffff !important;
+        min-height: 125px;
+        width: 100%;
+        border-radius: 0px 0px 4px 4px;
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.07), 0px 1.6px 3.6px rgba(0, 0, 0, 0.11);
+    }
+
+    .personal-bg-empty {
+        text-align: center;
+        min-height: 250px;
+        width: 100%;
+        border-radius: 4px;
+        padding-top: 20px;
+        box-shadow: 0.5px 0.5px 0.9px rgba(0, 0, 0, 0.07), 0.5px 1.6px 3.6px rgba(0, 0, 0, 0.11);
+
+        p {
+            padding-top: 10px
+        }
+    }
+}

@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{AC6909D0-4EB3-4CF4-AA72-E0829DE60E2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{38B06569-9E33-402E-96D3-8D1D6A339E1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D1C239FA-0C73-4DC3-923E-6435D600B88E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{A06C719B-0011-47AE-8E0B-A1A8CF7BB343}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Teams", "Teams", "{720715D8-7900-4E4E-9E2C-8E87FD97D3AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{C0B879BD-74C7-4F36-A9AD-DF394EEBF154}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure", "Azure", "{F1E02BED-DD7C-413F-BE16-45DE927AFBFF}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ARM Templates", "Deployment\Azure\ARM Templates.deployproj", "{07256571-A8CE-4006-AC30-EB2E3D96F483}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{9B950431-C001-4449-8F69-2886ABF7F149}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Teams\local\color.png = Deployment\Teams\local\color.png
+		Deployment\Teams\local\manifest.json = Deployment\Teams\local\manifest.json
+		Deployment\Teams\local\outline.png = Deployment\Teams\local\outline.png
+		Deployment\Teams\local\Sustainability.zip = Deployment\Teams\local\Sustainability.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dev", "dev", "{18E4D71E-3923-4256-8DD5-33AA987AFF47}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Teams\dev\color.png = Deployment\Teams\dev\color.png
+		Deployment\Teams\dev\manifest.json = Deployment\Teams\dev\manifest.json
+		Deployment\Teams\dev\outline.png = Deployment\Teams\dev\outline.png
+		Deployment\Teams\dev\Sustainability.zip = Deployment\Teams\dev\Sustainability.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prod", "prod", "{94E482BF-A4FF-4636-B1FC-7A33F05F417F}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Teams\prod\color.png = Deployment\Teams\prod\color.png
+		Deployment\Teams\prod\manifest.json = Deployment\Teams\prod\manifest.json
+		Deployment\Teams\prod\outline.png = Deployment\Teams\prod\outline.png
+		Deployment\Teams\prod\Sustainability.zip = Deployment\Teams\prod\Sustainability.zip
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC6909D0-4EB3-4CF4-AA72-E0829DE60E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC6909D0-4EB3-4CF4-AA72-E0829DE60E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC6909D0-4EB3-4CF4-AA72-E0829DE60E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6909D0-4EB3-4CF4-AA72-E0829DE60E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B06569-9E33-402E-96D3-8D1D6A339E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B06569-9E33-402E-96D3-8D1D6A339E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B06569-9E33-402E-96D3-8D1D6A339E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B06569-9E33-402E-96D3-8D1D6A339E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1C239FA-0C73-4DC3-923E-6435D600B88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C239FA-0C73-4DC3-923E-6435D600B88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C239FA-0C73-4DC3-923E-6435D600B88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C239FA-0C73-4DC3-923E-6435D600B88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A06C719B-0011-47AE-8E0B-A1A8CF7BB343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A06C719B-0011-47AE-8E0B-A1A8CF7BB343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A06C719B-0011-47AE-8E0B-A1A8CF7BB343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A06C719B-0011-47AE-8E0B-A1A8CF7BB343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07256571-A8CE-4006-AC30-EB2E3D96F483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07256571-A8CE-4006-AC30-EB2E3D96F483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07256571-A8CE-4006-AC30-EB2E3D96F483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07256571-A8CE-4006-AC30-EB2E3D96F483}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{720715D8-7900-4E4E-9E2C-8E87FD97D3AB} = {C0B879BD-74C7-4F36-A9AD-DF394EEBF154}
+		{F1E02BED-DD7C-413F-BE16-45DE927AFBFF} = {C0B879BD-74C7-4F36-A9AD-DF394EEBF154}
+		{07256571-A8CE-4006-AC30-EB2E3D96F483} = {F1E02BED-DD7C-413F-BE16-45DE927AFBFF}
+		{9B950431-C001-4449-8F69-2886ABF7F149} = {720715D8-7900-4E4E-9E2C-8E87FD97D3AB}
+		{18E4D71E-3923-4256-8DD5-33AA987AFF47} = {720715D8-7900-4E4E-9E2C-8E87FD97D3AB}
+		{94E482BF-A4FF-4636-B1FC-7A33F05F417F} = {720715D8-7900-4E4E-9E2C-8E87FD97D3AB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E275478-6560-442E-A9FD-134B87541308}
+	EndGlobalSection
+EndGlobal
