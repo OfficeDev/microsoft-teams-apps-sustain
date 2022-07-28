@@ -6,7 +6,6 @@ As the maintainer of this project, please make a few updates:
 
 | [Documentation](https://github.com/OfficeDev/microsoft-teams-apps-sustain/wiki) | [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-sustain/wiki/Deployment-guide) | [Architecture](https://github.com/OfficeDev/microsoft-teams-apps-sustain/wiki/Solution-overview) |
 
-
 Unlock endless potential around achieving your Sustainability Goals through Hybrid Work by bringing your workforce together on a single solution built on Teams that ignites employee engagement, tracks individual or organization-wide progress, and raises awareness around Sustainability. ​
 
 The Sustain app allows users to:​
@@ -26,7 +25,7 @@ When you're ready to try out Sustain, or to use it in your own organization, fol
 
 ## Feedback
 
-Thoughts? Questions? Ideas? Share them with us on [Teams UserVoice **Needs URL**]()!
+Thoughts? Questions? Ideas? Share them with us on [Teams UserVoice](https://microsoftteams.uservoice.com/forums/555103-public)!
 
 Please report bugs and other code issues [here](https://github.com/OfficeDev/microsoft-teams-apps-sustain/issues/new).
 
