@@ -12,7 +12,7 @@
       "value": "sustain-web"
     },
     "servers_sustain_sqlserver_name": {
-      "value": "sustain-sqlserver"
+      "value": "sustain-sqlserver-1"
     },
     "serverfarms_sustain_api_asp_name": {
       "value": "sustain-api-asp"
@@ -23,8 +23,20 @@
     "vaults_sustain_keyvault_name": {
       "value": "sustain-keyvault"
     },
-    "storageAccounts_sustainblob_name": {
+    "storageAccounts_sustainblobint_name": {
       "value": "sustainblob"
+    },
+    "virtualNetworks_sustain_vnet_name": {
+      "value": "sustain-vnet"
+    },
+    "privateEndpoints_sustain_private_endpoint_name": {
+      "value": "sustain-private-endpoint"
+    },
+    "privateDnsZones_privatelink_database_windows_net_name": {
+      "value": "privatelink.database.windows.net"
+    },
+    "networkInterfaces_sustain_private_endpoint_nic_name": {
+      "value": "sustain-private-endpoint-nic"
     },
     "default_sql_admin": {
       "value": "adm1n"
