@@ -5,26 +5,38 @@
     "vulnerabilityAssessments_Default_storageContainerPath": {
       "value": "SecureString"
     },
-    "sites_sustain_api_name": {
-      "value": "sustain-api"
+    "sites_necsus_api_name": {
+      "value": "necsus-api"
     },
-    "sites_sustain_web_name": {
-      "value": "sustain-web"
+    "sites_necsus_web_name": {
+      "value": "necsus-web"
     },
-    "servers_sustain_sqlserver_name": {
-      "value": "sustain-sqlserver"
+    "servers_necsus_sqlserver_name": {
+      "value": "necsus-sqlserver-1"
     },
-    "serverfarms_sustain_api_asp_name": {
-      "value": "sustain-api-asp"
+    "serverfarms_necsus_api_asp_name": {
+      "value": "necsus-api-asp"
     },
-    "serverfarms_sustain_web_asp_name": {
-      "value": "sustain-web-asp"
+    "serverfarms_necsus_web_asp_name": {
+      "value": "necsus-web-asp"
     },
-    "vaults_sustain_keyvault_name": {
-      "value": "sustain-keyvault"
+    "vaults_necsus_keyvault_name": {
+      "value": "necsus-keyvault"
     },
-    "storageAccounts_sustainblob_name": {
-      "value": "sustainblob"
+    "storageAccounts_necsusblobint_name": {
+      "value": "necsusblob"
+    },
+    "virtualNetworks_necsus_vnet_name": {
+      "value": "necsus-vnet"
+    },
+    "privateEndpoints_necsus_private_endpoint_name": {
+      "value": "necsus-private-endpoint"
+    },
+    "privateDnsZones_privatelink_database_windows_net_name": {
+      "value": "privatelink.database.windows.net"
+    },
+    "networkInterfaces_necsus_private_endpoint_nic_name": {
+      "value": "necsus-private-endpoint-nic"
     },
     "default_sql_admin": {
       "value": "adm1n"
