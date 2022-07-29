@@ -12,7 +12,7 @@
       "value": "sustain-web"
     },
     "servers_sustain_sqlserver_name": {
-      "value": "sustain-sqlserver-1"
+      "value": "sustain-sqlserver"
     },
     "serverfarms_sustain_api_asp_name": {
       "value": "sustain-api-asp"
@@ -23,7 +23,7 @@
     "vaults_sustain_keyvault_name": {
       "value": "sustain-keyvault"
     },
-    "storageAccounts_sustainblobint_name": {
+    "storageAccounts_sustainblob_name": {
       "value": "sustainblob"
     },
     "virtualNetworks_sustain_vnet_name": {

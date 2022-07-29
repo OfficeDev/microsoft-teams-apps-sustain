@@ -29,7 +29,7 @@
       "defaultValue": "sustain-keyvault",
       "type": "String"
     },
-    "storageAccounts_sustainblobint_name": {
+    "storageAccounts_sustainblob_name": {
       "defaultValue": "sustainblobint",
       "type": "String"
     },
@@ -363,7 +363,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-09-01",
-      "name": "[parameters('storageAccounts_sustainblobint_name')]",
+      "name": "[parameters('storageAccounts_sustainblob_name')]",
       "location": "eastus",
       "sku": {
         "name": "Standard_LRS",
@@ -985,9 +985,9 @@
     {
       "type": "Microsoft.Storage/storageAccounts/blobServices",
       "apiVersion": "2021-09-01",
-      "name": "[concat(parameters('storageAccounts_sustainblobint_name'), '/default')]",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblobint_name'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
       ],
       "sku": {
         "name": "Standard_LRS",
@@ -1018,9 +1018,9 @@
     {
       "type": "Microsoft.Storage/storageAccounts/fileServices",
       "apiVersion": "2021-09-01",
-      "name": "[concat(parameters('storageAccounts_sustainblobint_name'), '/default')]",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblobint_name'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
       ],
       "sku": {
         "name": "Standard_LRS",
@@ -1042,9 +1042,9 @@
     {
       "type": "Microsoft.Storage/storageAccounts/queueServices",
       "apiVersion": "2021-09-01",
-      "name": "[concat(parameters('storageAccounts_sustainblobint_name'), '/default')]",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblobint_name'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
       ],
       "properties": {
         "cors": {
@@ -1055,9 +1055,9 @@
     {
       "type": "Microsoft.Storage/storageAccounts/tableServices",
       "apiVersion": "2021-09-01",
-      "name": "[concat(parameters('storageAccounts_sustainblobint_name'), '/default')]",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblobint_name'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
       ],
       "properties": {
         "cors": {
@@ -2802,10 +2802,10 @@
     {
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2021-09-01",
-      "name": "[concat(parameters('storageAccounts_sustainblobint_name'), '/default/challengebanners')]",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default/challengebanners')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_sustainblobint_name'), 'default')]",
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblobint_name'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_sustainblob_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
       ],
       "properties": {
         "immutableStorageWithVersioning": {
@@ -2819,10 +2819,10 @@
     {
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2021-09-01",
-      "name": "[concat(parameters('storageAccounts_sustainblobint_name'), '/default/photos')]",
+      "name": "[concat(parameters('storageAccounts_sustainblob_name'), '/default/photos')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_sustainblobint_name'), 'default')]",
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblobint_name'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_sustainblob_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_sustainblob_name'))]"
       ],
       "properties": {
         "immutableStorageWithVersioning": {
