@@ -1,0 +1,64 @@
+﻿{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.13/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.13",
+  "version": "1.0.0",
+  "id": "59ced662-f04a-4395-b77c-7f617b4f2be7",
+  "packageName": "com.microsoft.teams.sustain",
+  "developer": {
+    "name": "TeamsAppDEV",
+    "websiteUrl": "https://dev.teamsapps.local:3000",
+    "privacyUrl": "https://dev.teamsapps.local:3000/privacy/",
+    "termsOfUseUrl": "https://dev.teamsapps.local:3000/termsofuse"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "LOCAL Sustain",
+    "full": "LOCAL Sustain"
+  },
+  "description": {
+    "short": "",
+    "full": ""
+  },
+  "accentColor": "#FFFFFF",
+  "staticTabs": [
+    {
+      "entityId": "7dce04e2-927b-496b-b15e-2991036d46d4",
+      "scopes": [ "personal" ],
+      "context": [ "personalTab" ],
+      "name": "Home",
+      "contentUrl": "https://dev.teamsapps.local:3000/"
+    },
+    {
+      "entityId": "73980a9b-e0cf-4c3f-84c6-cd8f962f6402",
+      "scopes": [ "personal" ],
+      "context": [ "personalTab" ],
+      "name": "Challenges",
+      "contentUrl": "https://dev.teamsapps.local:3000/challenges"
+    },
+    {
+      "entityId": "37273aeb-12bd-4c09-a8f4-a90a5a744b8f",
+      "scopes": [ "personal" ],
+      "context": [ "personalTab" ],
+      "name": "Connect & Share",
+      "contentUrl": "https://dev.teamsapps.local:3000/yammer"
+    }
+  ],
+  "validDomains": [],
+  "webApplicationInfo": {
+    "id": "<app registration client id>",
+    "resource": "api://dev.teamsapps.local:3000"
+  }
+  //"authorization": {
+  //  "permissions": {
+  //    "resourceSpecific": [
+  //      {
+  //        "name": "TeamsActivity.Send.Group",
+  //        "type": "Application"
+  //      }
+  //    ]
+  //  }
+  //}
+}

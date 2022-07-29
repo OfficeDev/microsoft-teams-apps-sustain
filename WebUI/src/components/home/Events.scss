@@ -1,0 +1,34 @@
+#Events {
+    padding: 10px;
+
+    &>div {
+        width: 100%;
+        align-items: center;
+    }
+
+    .events-list {
+        margin-top: 15px;
+
+        .event-card {
+            min-height: 110px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .date-box {
+            height: 72px !important;
+            width: 72px !important;
+        }
+
+        .card-column {
+            width: 100%;
+            margin: 20px 15px 0 5px;
+
+            button {
+                justify-content: right;
+                padding: 0;
+                max-width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.13/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.13",
+  "version": "1.0.0",
+  "id": "<create a guid>",
+  "packageName": "com.microsoft.teams.sustain",
+  "developer": {
+    "name": "<Company Name>",
+    "websiteUrl": "https://<app url>",
+    "privacyUrl": "https://<app url>/privacy/",
+    "termsOfUseUrl": "https://<app url>/termsofuse"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Sustain",
+    "full": "Sustain"
+  },
+  "description": {
+    "short": "",
+    "full": ""
+  },
+  "accentColor": "#FFFFFF",
+  "staticTabs": [
+    {
+      "entityId": "<create a guid>",
+      "scopes": [ "personal" ],
+      "context": [ "personalTab" ],
+      "name": "Home",
+      "contentUrl": "https://<app url>"
+    },
+    {
+      "entityId": "<create a guid>",
+      "scopes": [ "personal" ],
+      "context": [ "personalTab" ],
+      "name": "Challenges",
+      "contentUrl": "https://<app url>/challenges"
+    },
+    {
+      "entityId": "<create a guid>",
+      "scopes": [ "personal" ],
+      "context": [ "personalTab" ],
+      "name": "Connect & Share",
+      "contentUrl": "https://<app url>/yammer"
+    }
+  ],
+  "validDomains": [],
+  "webApplicationInfo": {
+    "id": "<app registration client id>",
+    "resource": "<app registration Application ID URI>"
+  }
+}

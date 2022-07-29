@@ -1,0 +1,154 @@
+#Home {
+    padding: 10px;
+
+    .error-card {
+        padding: 10px;
+        justify-content: center;
+
+        .error-preview {
+            text-align: center;
+            padding: 15px;
+
+            img {
+                height: 150px
+            }
+        }
+
+        .error-text {
+            text-align: center;
+        }
+    }
+
+    .home-min-height {
+        min-height: 100vh;
+    }
+
+    .btnAll {
+
+        background: #5B5FC7;
+        border-color: #5B5FC7;
+        border-radius: 4px;
+        color: #FFFFFF;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .btnAccepted {
+        margin-left: 10px;
+        background: #EBEBEB;
+        border-radius: 4px;
+        border-color: #EBEBEB;
+        color: #252423;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+    .challenge-card {
+        height: 313px;
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.07), 0px 1.6px 3.6px rgba(0, 0, 0, 0.11);
+        border-radius: 4px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    #challenge-card-container {
+        padding: 12px 0 0 12px;
+
+    }
+
+    .challenge-image {
+        position: absolute;
+        width: 280px;
+        height: 120px;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        border-radius: 4px;
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+
+    .image-container {
+        position: relative;
+    }
+
+    .text-container {
+        position: absolute;
+        margin-top: 100px;
+        margin-left: 15px;
+    }
+
+    #floating_label {
+        position: relative;
+    }
+
+    .accepted {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 2px 12px;
+        gap: 4px;
+        width: 92px;
+        height: 28px;
+        left: 6px;
+        top: 9px;
+        background: #E8EBFA;
+        border-radius: 20px;
+        margin-left: 25px;
+        margin-top: 25px;
+    }
+
+    .points {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 2px 12px;
+        gap: 4px;
+        width: 71px;
+        height: 28px;
+        right: 6px;
+        top: 9px;
+        background: #FFAA44;
+        border-radius: 20px;
+        margin-left: 45px;
+        margin-top: 25px;
+    }
+
+    .focus {
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    .description {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .home-leaderboard {
+        position: relative;
+        height: 400px !important;
+        overflow: hidden !important;
+    }
+
+    .carousel-bg {
+        width: 676px;
+        height: 249px;
+        margin-top: 17px;
+        background: #FFFFFF;
+    }
+
+    .carousel-empty-img {
+        margin-left: 35%;
+        margin-top: 3%;
+        width: 189px;
+        height: 182px;
+    }
+
+    .carousel-empty-text {
+        margin-left: 15%;
+        margin-top: 2%;
+    }
+}

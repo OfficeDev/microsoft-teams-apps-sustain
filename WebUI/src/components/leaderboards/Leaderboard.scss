@@ -1,0 +1,39 @@
+#Leaderboard {
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    min-width: 300px;
+
+    .error-message {
+        img {
+            height: 180px;
+            margin: 20px;
+        }
+    }
+
+    .menu {
+        border-bottom-width: 0;
+        margin-bottom: 1.2rem;
+
+        .menu-item {
+            margin-right: 0.5rem;
+
+            span {
+                margin-bottom: 0.5rem
+            }
+        }
+    }
+
+    .leaderboard-position {
+        margin-bottom: 0.5rem;
+
+        .skeleton-avatar {
+            min-width: 2.75rem;
+            margin-right: 10px;
+        }
+
+        .leaderboard-name {
+            max-width: 210px;
+        }
+    }
+}

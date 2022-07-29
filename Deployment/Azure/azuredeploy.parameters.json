@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vulnerabilityAssessments_Default_storageContainerPath": {
+      "value": "SecureString"
+    },
+    "sites_sustain_api_name": {
+      "value": "sustain-api"
+    },
+    "sites_sustain_web_name": {
+      "value": "sustain-web"
+    },
+    "servers_sustain_sqlserver_name": {
+      "value": "sustain-sqlserver"
+    },
+    "serverfarms_sustain_api_asp_name": {
+      "value": "sustain-api-asp"
+    },
+    "serverfarms_sustain_web_asp_name": {
+      "value": "sustain-web-asp"
+    },
+    "vaults_sustain_keyvault_name": {
+      "value": "sustain-keyvault"
+    },
+    "storageAccounts_sustainblob_name": {
+      "value": "sustainblob"
+    },
+    "virtualNetworks_sustain_vnet_name": {
+      "value": "sustain-vnet"
+    },
+    "privateEndpoints_sustain_private_endpoint_name": {
+      "value": "sustain-private-endpoint"
+    },
+    "privateDnsZones_privatelink_database_windows_net_name": {
+      "value": "privatelink.database.windows.net"
+    },
+    "networkInterfaces_sustain_private_endpoint_nic_name": {
+      "value": "sustain-private-endpoint-nic"
+    },
+    "default_sql_admin": {
+      "value": "adm1n"
+    },
+    "default_sql_password": {
+      "value": "[concat('P', uniqueString(resourceGroup().id, deployment().name, '224F5A8B-51DB-46A3-A7C8-59B0DD584A41'), 'x', '!')]"
+    }
+  }
+}

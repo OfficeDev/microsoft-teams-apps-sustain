@@ -1,0 +1,77 @@
+#ContentManagement {
+
+    margin-left: 3%;
+
+    .content-parent {
+        margin-top: 5%;
+
+        .SharePointForm {
+            margin-top: 4%;
+
+            .ui-form__label {
+                margin-bottom: 0;
+            }
+
+            .ui-form__checkbox {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        .LinkTextArea {
+            .ui-box {
+                .ui-box {
+                    width: 500px;
+                }
+            }
+        }
+
+        .checkIcon {
+            padding-left: 95%;
+            color: #237B4B;
+        }
+
+        .closeIcon {
+            color: #8E192E;
+            padding-left: 95%;
+        }
+
+        .CarouselForm {
+            .CarouselInput {
+                .ui-box {
+                    .ui-box {
+                        .ui-box {
+                            width: 400px;
+                        }
+                    }
+                }
+            }
+
+            .CarouselTextArea {
+                .ui-textarea {
+                    width: 400px;
+                    height: 150px;
+                }
+
+            }
+
+        }
+
+        .ContentCarouselImport {
+            margin-top: 30%;
+        }
+
+        .ContentCarouselForm {
+            margin-top: 15%;
+        }
+
+
+        .ThumbnailInput {
+            .ui-box {
+                .ui-box {
+                    width: 250px;
+                }
+            }
+        }
+    }
+}

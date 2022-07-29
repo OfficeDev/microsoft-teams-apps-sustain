@@ -1,0 +1,41 @@
+#AdminChallenge {
+
+    .challenges-table {
+        width: 100%;
+        min-width: 100% !important;
+    }
+
+    .challenges-table-container {
+        padding-top: 0 !important;
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+        padding-bottom: 10px !important;
+        min-width: 100% !important;
+    }
+
+    .buttons-container {
+        padding: 10px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .thumbnail {
+        max-height: 32px;
+        max-width: 32px;
+        min-height: 32px;
+        min-width: 32px;
+        margin-right: 5px;
+    }
+
+    .title-container {
+        max-width: 458px;
+        min-width: 458px;
+        cursor: pointer;
+    }
+
+    /* PAGINATION */
+    .pagination button[title="Prev"],
+    .pagination button[title="Next"] {
+        padding: 0 10px;
+    }
+}
