@@ -772,7 +772,7 @@
         "zoneRedundant": false,
         "readScale": "Disabled",
         "requestedBackupStorageRedundancy": "Geo",
-        "maintenanceConfigurationId": "/subscriptions/e4a64f2c-22d9-4ff3-b490-f43b7c1a0cc1/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
+        "maintenanceConfigurationId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default')]",
         "isLedgerOn": false
       }
     },
