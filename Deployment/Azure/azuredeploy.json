@@ -29,7 +29,7 @@
   },
   "variables": {
     "var_api_name": "[concat(parameters('app_name'),'-api',if(empty(parameters('environment_suffix')),  '', concat('-',parameters('environment_suffix'))))]",
-    "var_web_name": "[concat(parameters('app_name'),if(empty(parameters('environment_suffix')),  '', concat('-web-',parameters('environment_suffix'))))]",
+    "var_web_name": "[concat(parameters('app_name'),'-web',if(empty(parameters('environment_suffix')),  '', concat('-web-',parameters('environment_suffix'))))]",
     "var_api_asp_name": "[concat(parameters('app_name'),'-api-asp',if(empty(parameters('environment_suffix')),  '', concat('-',parameters('environment_suffix'))))]",
     "var_web_asp_name": "[concat(parameters('app_name'),'-web-asp',if(empty(parameters('environment_suffix')),  '', concat('-',parameters('environment_suffix'))))]",
     "var_sql_server_name": "[concat(parameters('app_name'),'-sqlserver',if(empty(parameters('environment_suffix')),  '', concat('-',parameters('environment_suffix'))))]",

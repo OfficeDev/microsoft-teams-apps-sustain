@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "app_name": {
-      "value": "sustms"
+      "value": "<<Value>>"
     },
     "environment_suffix": {
       "value": ""
@@ -15,10 +15,10 @@
       "value": "[concat('P', uniqueString(resourceGroup().id, deployment().name, '224F5A8B-51DB-46A3-A7C8-59B0DD584A41'), 'x', '!')]"
     },
     "tenant_id": {
-      "value": "96d29111-3eea-4f25-bf8b-74536122f243"
+      "value": "<<Tenant ID>>"
     },
     "subscription_id": {
-      "value": "c49b01b8-6b60-4b7a-921d-71df95fa6f31"
+      "value": "<<Subscription ID>>"
     }
   }
 }
