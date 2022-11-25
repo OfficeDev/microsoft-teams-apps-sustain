@@ -1,12 +1,13 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
 import axios from "common/AxiosJWTDecorator";
+import { globalConfig } from "config/config";
+
 import { ChallengeRecord } from "model/Challenge/ChallengeRecord";
 import { ChallengesResults } from "model/Challenge/ChallengeResult";
 
+
 export const getChallengesbyid = async (id: any, forManagement: boolean = false): Promise<any> => {
-    let url = process.env.REACT_APP_BASE_URL + "/api/challenge/GetChallengebyId?id=" + id;
+
+    let url = globalConfig.get().REACT_APP_BASE_URL + "/api/challenge/GetChallengebyId?id=" + id;
 
     if (forManagement) {
         url = url + "&forManagement=" + forManagement;
@@ -16,38 +17,38 @@ export const getChallengesbyid = async (id: any, forManagement: boolean = false)
 };
 
 export const getChallengeStatus = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/challenge/GetChallengeStatus?id=" + id;
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/challenge/GetChallengeStatus?id=" + id;
 
     return await axios.get<ChallengeRecord>(url);
 };
 
 export const getPercentage = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/challenge/GetCompletionPercentage?id=" + id;
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/challenge/GetCompletionPercentage?id=" + id;
 
     return await axios.get<ChallengeRecord>(url);
 };
 
 export const getNumCompleted = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/challenge/GetNumUsersCompleted?id=" + id;
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/challenge/GetNumUsersCompleted?id=" + id;
 
     return await axios.get<ChallengeRecord>(url);
 };
 
 
 export const getTotalAccepted = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/challenge/GetNumUsersAccepted?id=" + id;
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/challenge/GetNumUsersAccepted?id=" + id;
 
     return await axios.get<ChallengeRecord>(url);
 };
 
 export const acceptChallenge = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/ChallengeRecord";
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/ChallengeRecord";
 
     return await axios.post<ChallengeRecord>(url, { 'challengeId': id });
 };
 
 export const completeChallenge = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/ChallengeRecord";
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/ChallengeRecord";
 
     return await axios.put<ChallengeRecord>(url,
         {
@@ -57,7 +58,7 @@ export const completeChallenge = async (id: any): Promise<any> => {
 };
 
 export const leaveChallenge = async (id: any): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/ChallengeRecord";
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/ChallengeRecord";
 
     return await axios.delete<ChallengeRecord>(url, {
         headers: {

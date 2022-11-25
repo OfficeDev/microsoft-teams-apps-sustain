@@ -1,13 +1,11 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
-import React from 'react';
-import { Flex, Carousel, Text, Card, Box, Image, Skeleton } from '@fluentui/react-northstar';
+import React from 'react'
+import { Flex, Carousel, Text, Card, Box, Image, Skeleton } from '@fluentui/react-northstar'
 import { pages } from "@microsoft/teams-js";
 import { getDashboardDetails } from 'services/dashboard-service';
 import { DashboardRankModel } from 'model/Dashboard/DashboardRank';
 import { FluentUICarousel } from 'model/Carousel/FluentUICarousel';
 import "./Home-dashboard.scss";
+import { globalConfig } from 'config/config';
 
 const PERSONAL_CARD_SKELETON = (
     <Skeleton animation="pulse">
@@ -89,10 +87,11 @@ class HomeDashboard extends React.Component<any, any> {
                 var carouselContent: DashboardRankModel[] = [];
                 var ctr: number = 1;
                 var currentRankLabel = res.data.currentRankLabel;
+                var nextRankLabel = res.data.nextRankLabel;
 
                 res.data.dashboardRanks.forEach((y: DashboardRankModel) => {
                     carouselContent.push(y);
-                    if (ctr % 5 === 0) {
+                    if (ctr % 5 == 0) {
                         carouselData.push(
                             {
                                 "aria-label": (ctr / 5),
@@ -107,7 +106,7 @@ class HomeDashboard extends React.Component<any, any> {
                                                                 <Flex.Item>
                                                                     <div className="home-dashboard-badge">
                                                                         {
-                                                                            currentRankLabel === x.label ?
+                                                                            currentRankLabel == x.label ?
                                                                                 (
                                                                                     <div>
                                                                                         <Image className="home-dashboard-badge-icon-big" src={x.label.toLowerCase() + ".svg"} />
@@ -175,7 +174,7 @@ class HomeDashboard extends React.Component<any, any> {
     }
 
     navigateToChallengeTab() {
-        pages.navigateToApp({ appId: process.env.REACT_APP_TEAMS_APP_ID, pageId: process.env.REACT_APP_CHALLENGE_PAGE_ID })
+        pages.navigateToApp({ appId: globalConfig.get().REACT_APP_TEAMS_APP_ID, pageId: globalConfig.get().REACT_APP_CHALLENGE_PAGE_ID })
     }
 
     render() {
@@ -277,4 +276,4 @@ class HomeDashboard extends React.Component<any, any> {
     }
 }
 
-export default HomeDashboard;
+export default HomeDashboard

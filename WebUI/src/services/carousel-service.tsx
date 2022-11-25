@@ -1,15 +1,17 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
 import axios from "common/AxiosJWTDecorator";
+import { globalConfig } from "config/config";
 import { CarouselModel } from "model/Carousel/Carousel";
 
+
 export const getCarousel = async (): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/Carousel";
+
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/Carousel";
+
     return axios.get(url);
 };
 
 export const saveCarousel = async (carousel: CarouselModel[]): Promise<any> => {
+
     const formData = new FormData();
     let itemCount = 0;
     console.log(carousel)
@@ -34,13 +36,14 @@ export const saveCarousel = async (carousel: CarouselModel[]): Promise<any> => {
     formData.append("ItemsCount", itemCount.toString());
 
     if (itemCount > 0) {
-        const url = process.env.REACT_APP_BASE_URL + "/api/Carousel";
+        const url = globalConfig.get().REACT_APP_BASE_URL + "/api/Carousel";
 
         return axios.post(url, formData);
     }
 };
 
 export const editCarousel = async (carousel: CarouselModel[]): Promise<any> => {
+
     const formData = new FormData();
     let itemCount = 0;
     console.log(carousel)
@@ -67,14 +70,15 @@ export const editCarousel = async (carousel: CarouselModel[]): Promise<any> => {
     formData.append("ItemsCount", itemCount.toString());
 
     if (itemCount > 0) {
-        const url = process.env.REACT_APP_BASE_URL + "/api/Carousel";
+        const url = globalConfig.get().REACT_APP_BASE_URL + "/api/Carousel";
 
         return axios.put(url, formData);
     }
 };
 
+
 export const deleteCarousel = async (ids: number[]): Promise<any> => {
-    const url = process.env.REACT_APP_BASE_URL + "/api/Carousel";
+    const url = globalConfig.get().REACT_APP_BASE_URL + "/api/Carousel";
 
     if (ids.length > 0) {
         return axios.delete(url, { data: ids });

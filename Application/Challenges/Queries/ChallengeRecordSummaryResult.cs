@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using Microsoft.Teams.Apps.Sustainability.Domain;
-
 namespace Microsoft.Teams.Apps.Sustainability.Application.Challenges.Queries;
 
 public class ChallengeRecordSummaryResult : IMapFrom<ChallengeRecord>

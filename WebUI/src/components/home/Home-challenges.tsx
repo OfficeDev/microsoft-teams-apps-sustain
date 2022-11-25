@@ -1,7 +1,4 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
-import React from 'react';
+import React from 'react'
 import { Flex, FlexItem, Image, Card, Box, Button, Text, Avatar, Loader, Label } from '@fluentui/react-northstar';
 import { pages } from "@microsoft/teams-js";
 import { ChallengeRecord } from 'model/Challenge/ChallengeRecord';
@@ -10,6 +7,7 @@ import { UserPhoto } from 'model/User/UserPhoto';
 import { getChallenges } from 'services/challenge-service';
 import { completeChallenge } from 'services/learnmore-service';
 import "./Home-challenges.scss";
+import { globalConfig } from 'config/config';
 
 class HomeMonthlyChallenge extends React.Component<any, any> {
     constructor(props: any) {
@@ -68,7 +66,7 @@ class HomeMonthlyChallenge extends React.Component<any, any> {
     }
 
     goToPage(pageNumber: number) {
-        if (pageNumber !== this.state.pageNumber) {
+        if (pageNumber != this.state.pageNumber) {
             const currentPage = pageNumber;
 
             this.setState({ pageNumber: currentPage }, () => {
@@ -138,7 +136,7 @@ class HomeMonthlyChallenge extends React.Component<any, any> {
     }
 
     navigateToChallengeTab() {
-        pages.navigateToApp({ appId: process.env.REACT_APP_TEAMS_APP_ID, pageId: process.env.REACT_APP_CHALLENGE_PAGE_ID })
+        pages.navigateToApp({ appId: globalConfig.get().REACT_APP_TEAMS_APP_ID, pageId: globalConfig.get().REACT_APP_CHALLENGE_PAGE_ID })
     }
 
     render() {
@@ -190,7 +188,7 @@ class HomeMonthlyChallenge extends React.Component<any, any> {
                                                     <Image alt='challenge' className='thumbnail-image' src={item?.thumbnail} />
                                                     <Flex>
                                                         {
-                                                            item.recurrence === 0 ?
+                                                            item.recurrence == 0 ?
                                                                 <Label icon="" className="point-container-daily challenge-point" circular>
                                                                     <img src="trophy.svg" alt="" /> &nbsp; {item.points}/day
                                                                 </Label>
@@ -266,4 +264,4 @@ class HomeMonthlyChallenge extends React.Component<any, any> {
     }
 }
 
-export default HomeMonthlyChallenge;
+export default HomeMonthlyChallenge

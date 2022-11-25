@@ -1,12 +1,10 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
-import { Box, Button, ChevronStartIcon, Flex, List, Segment } from "@fluentui/react-northstar";
+import { Box, Button, ChevronStartIcon, Flex, List, Segment, Text } from "@fluentui/react-northstar";
 import AdminChallenge from "components/admin/AdminChallenge";
 import React from 'react';
 import AdminUserManagement from "components/admin/AdminUserManagement";
 import ContentManagement from "components/admin/ContentManagement";
 import { pages } from "@microsoft/teams-js";
+import { globalConfig } from "config/config";
 
 class Admin extends React.Component<{}, any> {
 
@@ -48,7 +46,7 @@ class Admin extends React.Component<{}, any> {
     }
 
     back() {
-        pages.navigateToApp({ appId: process.env.REACT_APP_TEAMS_APP_ID, pageId: process.env.REACT_APP_HOME_PAGE_ID })
+        pages.navigateToApp({ appId: globalConfig.get().REACT_APP_TEAMS_APP_ID, pageId: globalConfig.get().REACT_APP_HOME_PAGE_ID })
     }
 
     render() {
@@ -72,13 +70,13 @@ class Admin extends React.Component<{}, any> {
                     <Flex.Item size="80%">
                         <Box>
                             {
-                                this.state?.selectedTab === 'contentManagement' ? <ContentManagement /> : null
+                                this.state?.selectedTab == 'contentManagement' ? <ContentManagement /> : null
                             }
                             {
-                                this.state?.selectedTab === 'adminGroups' ? <AdminUserManagement /> : null
+                                this.state?.selectedTab == 'adminGroups' ? <AdminUserManagement /> : null
                             }
                             {
-                                this.state?.selectedTab === 'challenges' ? <AdminChallenge /> : null
+                                this.state?.selectedTab == 'challenges' ? <AdminChallenge /> : null
                             }
                         </Box>
                     </Flex.Item>

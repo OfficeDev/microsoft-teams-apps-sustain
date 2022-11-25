@@ -4,7 +4,6 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Teams.Apps.Sustainability.Domain;
-
 namespace Microsoft.Teams.Apps.Sustainability.Application;
 
 public record AbandonChallengeCommand : IRequest<int>

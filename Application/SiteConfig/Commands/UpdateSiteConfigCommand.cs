@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.Teams.Apps.Sustainability.Domain;
 
 namespace Microsoft.Teams.Apps.Sustainability.Application;
-public record UpdateSiteConfigCommand: IRequest<int>
+public record UpdateSiteConfigCommand : IRequest<int>
 {
     public int ServiceType { get; set; }
     public string URI { get; set; } = "";
@@ -26,13 +26,13 @@ class UpdateSiteConfigCommandValidator : AbstractValidator<UpdateSiteConfigComma
     }
 }
 
-class UpdatesiteConfigCommandHandler: IRequestHandler<UpdateSiteConfigCommand, int>
+class UpdatesiteConfigCommandHandler : IRequestHandler<UpdateSiteConfigCommand, int>
 {
     private readonly IApplicationDbContext _context;
     private readonly IIdentityService _identityService;
     public UpdatesiteConfigCommandHandler(IApplicationDbContext context, IIdentityService identityService)
     {
-        _context=context;
+        _context = context;
         _identityService = identityService;
     }
 
