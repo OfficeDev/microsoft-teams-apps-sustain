@@ -69,10 +69,11 @@ Write-Output "$outputPrefix - Changing directory to project path."
 # Change directory to project path
 cd $project_path
 
-Write-Output "$outputPrefix - Building API Project."
-# Build API Project
+Write-Output "$outputPrefix - Build & Publish API Project."
+# Build & Publish API Project
 try {
-    Invoke-Dotnet -Command  publish -Arguments "-c Release" 
+    Invoke-Dotnet -Command build -Arguments ".\Microsoft.Teams.Apps.Sustainability.sln --configuration Release"
+    Invoke-Dotnet -Command  publish -Arguments ".\WebAPI\WebAPI.csproj -c Release"
 } catch { }
 
 Write-Output "$outputPrefix - Zipping API build files."
