@@ -3,7 +3,7 @@
 
 namespace Microsoft.Teams.Apps.Sustainability.Domain;
 
-public class ChallengeInvite : BaseAuditableEntity
+public class ChallengeInvite: BaseAuditableEntity
 {
     public string From { get; set; } = "";
     public string To { get; set; } = "";

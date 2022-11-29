@@ -54,6 +54,12 @@ public class CloudBlobService: IBlobService
 
     public string GetSasLink(string link)
     {
+        
+        if (string.IsNullOrEmpty(link))
+        {
+            return "";
+        }
+
         CloudBlockBlob cloudBlockBlob = new CloudBlockBlob(new Uri(link), _cloudBlobClient.Credentials);
 
         SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy();

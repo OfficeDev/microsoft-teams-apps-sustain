@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Teams.Apps.Sustainability.Domain;
 
 namespace Microsoft.Teams.Apps.Sustainability.Application;
-
 public record class DeleteUserCommand : IRequest<int>
 {
     public string Email { get; set; } = "";

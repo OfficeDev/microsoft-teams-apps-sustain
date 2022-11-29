@@ -85,6 +85,16 @@ class GetUserDashboardDetailsHandler : IRequestHandler<GetUserDashboardDetails, 
            .ProjectTo<LeaderboardResult>(_mapper.ConfigurationProvider)
            .FirstOrDefaultAsync();
 
+        if (userChallengeRecordSummary == null)
+        {
+            userChallengeRecordSummary = new LeaderboardResult()
+            {
+                CurrentPoints = 0,
+                DateCreated = DateTime.UtcNow,
+                DateModified = DateTime.UtcNow,
+            };
+        }
+
         var dashboardRanks = new List<DashboardRank>();
         var minScore = dataDashboardRankLabels.Min(x => x.Score);
         var maxScore = dataDashboardRankLabels.Max(x => x.Score);

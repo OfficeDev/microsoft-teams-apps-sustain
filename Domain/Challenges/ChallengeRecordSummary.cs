@@ -7,4 +7,6 @@ public class ChallengeRecordSummary: BaseAuditableEntity
 {
     public virtual User User { get; set; }
     public int CurrentPoints { get; set; }
+    public DateTime Created { get; set; }
+    public DateTime LastModified { get; set; }
 }

@@ -6,7 +6,7 @@
 .vs/
 WebAPI/Properties/
 WebUI/.certs/
-WebUI/build/
+#WebUI/build/
 
 # User-specific files
 *.rsuser

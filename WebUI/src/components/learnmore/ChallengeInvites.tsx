@@ -8,6 +8,7 @@ import "./ChallengeInvite.scss";
 import { FluentUIDropDownUser } from 'model/User/FluentUIDropDownUser';
 import { UserPhoto } from 'model/User/UserPhoto';
 import { NotificationRequest } from 'model/Notification/NotificationRequest';
+import { globalConfig } from 'config/config';
 
 class ChallengeInvite extends React.Component<any, any> {
     constructor(props: any) {
@@ -85,6 +86,10 @@ class ChallengeInvite extends React.Component<any, any> {
         })
     }
 
+    onChangeHandler(_: any, event: any) {
+
+    }
+
     submitForm = (event: any, props: any) => {
 
         const challengeId = this.props?.challengeId;
@@ -94,8 +99,8 @@ class ChallengeInvite extends React.Component<any, any> {
 
         this.setState({ isSubmitting: true }, () => {
             const notifRequest: NotificationRequest = {
-                AppId: process.env.REACT_APP_TEAMS_APP_ID,
-                PageId: process.env.REACT_APP_CHALLENGE_PAGE_ID,
+                AppId: globalConfig.get().REACT_APP_TEAMS_APP_ID,
+                PageId: globalConfig.get().REACT_APP_CHALLENGE_PAGE_ID,
                 Message: message,
                 Recipients: emailAddresses,
                 ChallengeId: challengeId,
@@ -149,4 +154,4 @@ class ChallengeInvite extends React.Component<any, any> {
     }
 }
 
-export default ChallengeInvite;
+export default ChallengeInvite

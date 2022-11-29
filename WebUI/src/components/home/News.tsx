@@ -1,8 +1,5 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
-import React from 'react';
-import { Button, Card, Flex, Text, Image, Box, Skeleton } from '@fluentui/react-northstar';
+import React from 'react'
+import { Button, Card, Dialog, Flex, Text, CloseIcon, Image, Box, Segment, Divider, Skeleton } from '@fluentui/react-northstar';
 import { getNews } from 'services/sharepoint-service';
 import "./News.scss";
 
@@ -88,7 +85,7 @@ class News extends React.Component<{}, any> {
         return (
             <>
                 {
-                    this.state.isLoading || this.state.error || (this.state.News && this.state.News.length > 0) ?
+                    this.state.isLoading || this.state.error || this.state.News && this.state.News.length > 0 ?
                         <Flex.Item grow size="70%">
                             <Box>
                                 <Flex column id="News">
@@ -172,4 +169,4 @@ class News extends React.Component<{}, any> {
     }
 }
 
-export default News;
+export default News

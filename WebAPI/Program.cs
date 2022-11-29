@@ -120,13 +120,14 @@ if (app.Environment.IsDevelopment())
     {
         c.OAuthClientId(aadIdentity.ClientId);
     });
-
-    app.UseDevSeedData();
 }
 else
 {
     app.UseHsts();
 }
+
+//Initialize database and create admin entry
+app.UseDevSeedData();
 
 app.UseHttpsRedirection();
 

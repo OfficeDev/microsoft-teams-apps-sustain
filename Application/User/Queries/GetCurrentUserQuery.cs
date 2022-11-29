@@ -61,7 +61,13 @@ class GetUserByIdQueryHandler : IRequestHandler<GetCurrentUserQuery, UserSummary
             || (user != null && user.UserRoles != null && user.UserRoles.Count <= 0)
             )
         {
-            var role = _dbContext.Roles.FirstOrDefault(x => x.Name.ToLower() == "user");
+            // Check if a user exists
+            var doesAnyUserExist = _dbContext.Users.Any(x => true);
+
+            // If there is no user yet, set as admin
+            string roleToFind = doesAnyUserExist ? "user" : "admin";
+
+            var role = _dbContext.Roles.FirstOrDefault(x => x.Name.ToLower().Contains(roleToFind));
 
             if (user == null)
             {
