@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.13/MicrosoftTeams.schema.json",
   "manifestVersion": "1.13",
   "version": "1.0.0",
-  "id": "<create a guid>",
+  "id": "48fe6333-5b87-42a6-c800-2735fdd5e70c",
   "packageName": "com.microsoft.teams.sustain",
   "developer": {
     "name": "<Company Name>",
@@ -25,21 +25,21 @@
   "accentColor": "#FFFFFF",
   "staticTabs": [
     {
-      "entityId": "<create a guid>",
+      "entityId": "fdc7f83b-acb4-495a-b024-025199d0ab67",
       "scopes": [ "personal" ],
       "context": [ "personalTab" ],
       "name": "Home",
       "contentUrl": "https://<app url>"
     },
     {
-      "entityId": "<create a guid>",
+      "entityId": "56542934-1b74-409f-8d73-6b8e585043d8",
       "scopes": [ "personal" ],
       "context": [ "personalTab" ],
       "name": "Challenges",
       "contentUrl": "https://<app url>/challenges"
     },
     {
-      "entityId": "<create a guid>",
+      "entityId": "c5bbb411-48e3-48d8-85eb-9ce6e5818a1f",
       "scopes": [ "personal" ],
       "context": [ "personalTab" ],
       "name": "Connect & Share",
@@ -48,7 +48,7 @@
   ],
   "validDomains": [],
   "webApplicationInfo": {
-    "id": "<app registration client id>",
+    "id": "<app registration Client ID>",
     "resource": "<app registration Application ID URI>"
   }
 }
