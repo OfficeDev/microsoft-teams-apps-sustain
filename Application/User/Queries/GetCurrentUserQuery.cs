@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Teams.Apps.Sustainability.Domain;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.Teams.Apps.Sustainability.Application.Common.Interfaces;
 
 namespace Microsoft.Teams.Apps.Sustainability.Application.User.Queries;
 
@@ -26,11 +27,13 @@ class GetUserByIdQueryHandler : IRequestHandler<GetCurrentUserQuery, UserSummary
     private readonly IApplicationDbContext _dbContext;
     private readonly IIdentityService _identityService;
     private readonly IMapper _mapper;
-    public GetUserByIdQueryHandler(IApplicationDbContext dbContext, IIdentityService identityService, IMapper mapper)
+    private readonly IGraphService _graphService;
+    public GetUserByIdQueryHandler(IApplicationDbContext dbContext, IIdentityService identityService, IMapper mapper, IGraphService graphService)
     {
         _dbContext = dbContext;
         _identityService = identityService;
         _mapper = mapper;
+        _graphService = graphService;
     }
 
     public async Task<UserSummaryResult> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
@@ -101,7 +104,10 @@ class GetUserByIdQueryHandler : IRequestHandler<GetCurrentUserQuery, UserSummary
                 _dbContext.UserRoles.Add(userRole);
 
             }
-
+            //Add user to yammer group
+            string groupID = _dbContext.SiteConfigs.FirstOrDefault(x => x.ServiceType == SiteConfigServiceType.Yammer).yammerGroupId;
+            var currentUser = await _graphService.GetUser(email);
+            await _graphService.AddMemberToYammerGroup(new List<string>() { $"https://graph.microsoft.com/v1.0/directoryObjects/{currentUser.Id}" }, groupID);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

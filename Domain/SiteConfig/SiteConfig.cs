@@ -10,5 +10,6 @@ namespace Microsoft.Teams.Apps.Sustainability.Domain
         public bool? IsEnabled { get; set; }
         public bool? IsNewsEnabled { get; set; }
         public bool? IsEventsEnabled { get; set; }
+        public string? yammerGroupId { get; set; } = "";
     }
 }
