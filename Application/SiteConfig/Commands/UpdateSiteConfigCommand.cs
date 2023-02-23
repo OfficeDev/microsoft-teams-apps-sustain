@@ -13,6 +13,7 @@ public record UpdateSiteConfigCommand : IRequest<int>
     public bool? IsEnabled { get; set; }
     public bool? IsNewsEnabled { get; set; }
     public bool? IsEventsEnabled { get; set; }
+    public string? yammerGroupId { get; set; }
 }
 
 
@@ -53,6 +54,7 @@ class UpdatesiteConfigCommandHandler : IRequestHandler<UpdateSiteConfigCommand, 
             LastModifiedBy = userEmail,
             ServiceType = (SiteConfigServiceType) request.ServiceType,
             URI = request.URI,
+            yammerGroupId = request.yammerGroupId
         };
 
         var serviceType = (SiteConfigServiceType)request.ServiceType;
@@ -70,6 +72,7 @@ class UpdatesiteConfigCommandHandler : IRequestHandler<UpdateSiteConfigCommand, 
             existingRecord.IsEventsEnabled = request.IsEventsEnabled;
             existingRecord.IsNewsEnabled = request.IsNewsEnabled;
             existingRecord.URI = request.URI;
+            existingRecord.yammerGroupId = request.yammerGroupId;
         }
 
         await _context.SaveChangesAsync(cancellationToken);

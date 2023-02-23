@@ -24,10 +24,10 @@ namespace Microsoft.Teams.Apps.Sustainability.Infrastructure.Services.Graph
             {
                 var queryOptions = new List<Option>()
                 {
-                    new QueryOption("$search", keyword)
+                    new QueryOption("$search", $"\"displayName:{keyword}\"")
                 };
 
-                var usersQuery = await _graphServiceClient.Me.People.Request(queryOptions).GetAsync();
+                var usersQuery = await _graphServiceClient.Users.Request(queryOptions).Header("ConsistencyLevel", "eventual").GetAsync();
                 foreach (var person in usersQuery)
                 {
                     if (!string.IsNullOrEmpty(person.UserPrincipalName))
@@ -289,6 +289,30 @@ namespace Microsoft.Teams.Apps.Sustainability.Infrastructure.Services.Graph
                     )
                     .Request()
                     .PostAsync();
+            }
+        }
+
+        public async Task AddMemberToYammerGroup(List<string> userIDColl, string? groupId)
+        {
+            try
+            {
+                if (userIDColl.Count > 0 && groupId != null && groupId != "")
+                {
+
+                    var group = new Group
+                    {
+                        AdditionalData = new Dictionary<string, object>()
+                    {
+                        {"members@odata.bind", userIDColl}
+                    }
+                    };
+
+                    await _graphServiceClient.Groups[groupId].Request().UpdateAsync(group);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

@@ -4,6 +4,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Teams.Apps.Sustainability.Domain;
+using Microsoft.Teams.Apps.Sustainability.Application.Common.Interfaces;
 
 namespace Microsoft.Teams.Apps.Sustainability.Application;
 
@@ -27,11 +28,13 @@ class CreateUserCommandHandler: IRequestHandler<CreateUserCommand, int>
 {
     private readonly IApplicationDbContext _context;
     private readonly IIdentityService _identityService;
+    private readonly IGraphService _graphService;
 
-    public CreateUserCommandHandler(IApplicationDbContext context, IIdentityService identityService)
+    public CreateUserCommandHandler(IApplicationDbContext context, IIdentityService identityService, IGraphService graphService)
     {
         _context = context;
         _identityService = identityService;
+        _graphService = graphService;
     }
 
     public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -39,6 +42,8 @@ class CreateUserCommandHandler: IRequestHandler<CreateUserCommand, int>
         int result = 0;
 
         var role = _context.Roles.FirstOrDefault(x => x.Name.ToLower() == request.Role.ToLower());
+        string groupID = "";
+        groupID = _context.SiteConfigs.FirstOrDefault(x => x.ServiceType == SiteConfigServiceType.Yammer).yammerGroupId;
 
         string currentUserEmail = !string.IsNullOrEmpty(_identityService.CurrentUserEmail) ? _identityService.CurrentUserEmail : "";
 
@@ -52,6 +57,7 @@ class CreateUserCommandHandler: IRequestHandler<CreateUserCommand, int>
         {
             throw new UserDuplicateException(nameof(User), "One of the email addresses has duplicates.");
         }
+        List<string> userEmailCol = new List<string>();
 
         foreach (var email in request.Emails)
         {
@@ -71,8 +77,11 @@ class CreateUserCommandHandler: IRequestHandler<CreateUserCommand, int>
 
             userModels.Add(userModel);
             userRoleModels.Add(userRoleModel);
+            var user = await _graphService.GetUser(email);
+            userEmailCol.Add($"https://graph.microsoft.com/v1.0/directoryObjects/{user.Id}");
         }
 
+        await _graphService.AddMemberToYammerGroup(userEmailCol, groupID);
         await _context.Users.AddRangeAsync(userModels);
         await _context.UserRoles.AddRangeAsync(userRoleModels);
         await _context.SaveChangesAsync(cancellationToken);

@@ -14,5 +14,6 @@ namespace Microsoft.Teams.Apps.Sustainability.Application.Common.Interfaces
         Task<UserWithPhotoModel> GetUser(string userId);
         Task<List<UserWithPhotoModel>> GetUsers(string userEmail, bool includePhoto = false);
         Task SendActivityFeedNotification(string recipients, string title, string message, string appId, string pageId, int challengeId);
+        Task AddMemberToYammerGroup(List<string> Emails, string? groupId);
     }
 }
