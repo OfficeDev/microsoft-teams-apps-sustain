@@ -123,8 +123,11 @@ class HomeMonthlyChallenge extends React.Component<any, any> {
         this.setState({ loadingChallengeIds: newState }, () => {
             completeChallenge(id).then((res: any) => {
                 this.getAll(this.state.pageNumber, this.state.maxPage, this.state.status);
+                this.props.invertchallenge();
+                this.props.refreshdashboard();
             }, err => { })
         });
+        
     }
 
     isButtonLoading(id: any): boolean {

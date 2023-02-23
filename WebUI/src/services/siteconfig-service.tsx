@@ -10,7 +10,7 @@ export const getSiteConfig = async (serviceType: number): Promise<any> => {
     return await axios.get<SiteConfigResult>(url);
 };
 
-export const saveSiteConfig = async (serviceType: number, uri: string, isEnabled: boolean, newsEnable: boolean, eventsEnabled: boolean): Promise<any> => {
+export const saveSiteConfig = async (serviceType: number, uri: string, isEnabled: boolean, newsEnable: boolean, eventsEnabled: boolean, yammerGroupId?: string): Promise<any> => {
 
     const url = globalConfig.get().REACT_APP_BASE_URL + "/api/SiteConfig";
 
@@ -20,6 +20,7 @@ export const saveSiteConfig = async (serviceType: number, uri: string, isEnabled
             'uri': uri,
             'isEnabled': isEnabled,
             'isNewsEnabled': newsEnable,
-            'isEventsEnabled': eventsEnabled
+            'isEventsEnabled': eventsEnabled,
+            'yammerGroupId': yammerGroupId ? yammerGroupId : ''
         });
 };
