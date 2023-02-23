@@ -7,4 +7,5 @@ export class SiteConfig {
     isEnabled?: boolean;
     isNewsEnabled?: boolean;
     isEventsEnabled?: boolean;
+    yammerGroupId?: string;
 }

@@ -7,11 +7,12 @@ import { getSiteConfig } from 'services/siteconfig-service';
 import "./Yammer.css";
 
 class Yammer extends React.Component<any, any> {
+    private refvar = React.createRef<HTMLIFrameElement>();
     constructor(props: any) {
         super(props)
-
         this.state = {
-            yammerUrl: ''
+            yammerUrl: '',
+            random:0
         }
     }
 
@@ -19,12 +20,23 @@ class Yammer extends React.Component<any, any> {
         this.getYammerSite();
     }
 
+    resetIframe = () => {
+        if(this.state.random < 1 &&  localStorage.getItem('isYammerReloadRequired') != "No")
+        {
+            setTimeout(() => {
+                this.setState({random: this.state.random + 1});
+                localStorage.setItem('isYammerReloadRequired', "No");
+              }, 3000);           
+        }       
+      };
+
     getYammerSite() {
         getSiteConfig(1).then((res: any) => {
             this.setState({
                 yammerConfigResults: res.data,
                 yammerUrl: res.data.items[0].uri,
-            });
+            }
+            );
         }, err => {
             this.setState({
                 yammerUrl: ''
@@ -36,7 +48,11 @@ class Yammer extends React.Component<any, any> {
         return (
             <>
                 <AdminNotice />
-                <iframe name='embed-feed' title='Yammer' className='yammer' src={this.state.yammerUrl} />
+                <iframe name="embed-feed" title="Yammer" className='yammer' key={this.state.random} onLoad={this.resetIframe}
+                src={this.state.yammerUrl} 
+                />
+                    
+                
             </>
         );
     }

@@ -35,6 +35,7 @@ class ContentManagement extends React.Component<any, any> {
             deleteCarousel: [],
             hasCarouselAdd: false,
             hasCarouselDelete: false,
+            yammerGroupID: ''
         }
     }
 
@@ -80,21 +81,24 @@ class ContentManagement extends React.Component<any, any> {
         this.setState({
             isLoading: true,
             yammerConfigResults: {},
-            yammerUrl: ''
+            yammerUrl: '',
+            yammerGroupID: ''
         }, () => {
             getSiteConfig(serviceType).then((res: any) => {
                 this.setState({
                     yammerConfigResults: res.data,
                     yammerUrl: res.data.items[0].uri,
                     yammerUrlValid: this.validateURL(res.data.items[0].uri),
-                    isLoading: false
+                    isLoading: false,
+                    yammerGroupID: res.data.items[0].yammerGroupId
                 });
             }, err => {
                 this.setState({
                     yammerConfigResults: {},
                     isLoading: false,
                     yammerUrl: '',
-                    yammerUrlValid: false
+                    yammerUrlValid: false,
+                    yammerGroupID: ''
                 });
             })
         });
@@ -110,6 +114,10 @@ class ContentManagement extends React.Component<any, any> {
         }
     }
 
+    updateYammerGroupID(evt: any) {
+        this.setState({ yammerGroupID: evt.target.value });
+    }
+
     validateURLOnBlur(evt: any, sourceType: string, index: number) {
         const sourceValue = evt.target.value;
         const isValid = this.validateURL(sourceValue);
@@ -121,7 +129,7 @@ class ContentManagement extends React.Component<any, any> {
             }
         }
         else if (sourceType === "yammer") {
-            this.setState({ yammerUrlValid: true, showYammerDialog: false })
+            this.setState({ yammerUrlValid: true, showYammerDialog: false, yammerGroupID: '' })
             if (!isValid) {
                 this.setState({ yammerUrlValid: false, showYammerDialog: true })
             }
@@ -203,12 +211,13 @@ class ContentManagement extends React.Component<any, any> {
     }
 
     saveYammerConfig() {
-        saveSiteConfig(1, this.state.yammerUrl, true, false, false).then((res: any) => {
+        saveSiteConfig(1, this.state.yammerUrl, true, false, false, this.state.yammerGroupID).then((res: any) => {
             this.getYammerSiteConfiguration(1);
         }, err => {
             this.setState({
                 isLoading: false,
-                yammerUrl: ''
+                yammerUrl: '',
+                yammerGroupID: ''
             });
         })
     }
@@ -440,6 +449,15 @@ class ContentManagement extends React.Component<any, any> {
                                     onChange={evt => this.updateURLOnChange(evt, "yammer")}
                                     onBlur={evt => this.validateURLOnBlur(evt, "yammer", 0)}
                                 />
+                                {this.state.yammerUrlValid && <FormInput
+                                    label="Yammer group ID"
+                                    name="groupId"
+                                    id="groupId"
+                                    className="LinkTextArea"
+                                    placeholder="Add your yammer group Id here"
+                                    value={this.state.yammerGroupID}
+                                    onChange={evt => this.updateYammerGroupID(evt)}
+                                />}
                             </Form>
                         </Box>
                     </Flex.Item>

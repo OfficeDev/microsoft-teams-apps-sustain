@@ -15,6 +15,8 @@ import "./MonthlyChallenge.scss";
 import AdminNotice from 'components/common/AdminNotice';
 
 class MonthlyChallenge extends React.Component<any, any> {
+
+    public leaderboardChallenge:any;
     constructor(props: any) {
         super(props)
         this.state = {
@@ -57,6 +59,8 @@ class MonthlyChallenge extends React.Component<any, any> {
 
                     for (let i = 1; i <= maxPages; i++) {
                         pages.push(i);
+                    console.log("under get all refreshing leaderboard")
+                    this.leaderboardChallenge.ChangeLeaderboardDisplay(true);
                     }
 
                     this.setState({
@@ -147,6 +151,8 @@ class MonthlyChallenge extends React.Component<any, any> {
         this.setState({ loadingChallengeIds: newState }, () => {
             completeChallenge(id).then((res: any) => {
                 this.getAll(this.state.pageNumber, this.state.maxPage, this.state.status);
+                console.log("under complete refreshing leaderboard")
+                    this.leaderboardChallenge.ChangeLeaderboardDisplay(true);
             }, err => { })
         });
     }
@@ -310,7 +316,7 @@ class MonthlyChallenge extends React.Component<any, any> {
                             </Flex.Item>
                             <Flex.Item grow size="30%">
                                 <Flex hAlign="center">
-                                    <Leaderboard />
+                                    <Leaderboard  ref={instances => { this.leaderboardChallenge = instances; }}/>
                                 </Flex>
                             </Flex.Item>
                         </Flex>
