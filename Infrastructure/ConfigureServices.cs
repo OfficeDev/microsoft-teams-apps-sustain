@@ -28,7 +28,7 @@ public static class ConfigureServices
                 options.UseInMemoryDatabase("Sustainability");
             else
                 options.UseSqlServer(configuration.GetValue<string>("necsus-sql-connection-string"),
-                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)).AddInterceptors(new AzureSqlConnectionTokenInjector());
         });
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddTransient<ApplicationDbContextInitializer>();
