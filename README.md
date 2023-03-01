@@ -1,8 +1,5 @@
-As the maintainer of this project, please make a few updates:
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
 
-# Sustain App Template
+# Sustain - Sample App
 
 | [Documentation](https://github.com/OfficeDev/microsoft-teams-apps-sustain/wiki) | [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-sustain/wiki/Deployment-guide) | [Architecture](https://github.com/OfficeDev/microsoft-teams-apps-sustain/wiki/Solution-overview) |
 
