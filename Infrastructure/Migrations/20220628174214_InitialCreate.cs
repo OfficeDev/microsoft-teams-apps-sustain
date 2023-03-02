@@ -68,6 +68,7 @@ namespace Microsoft.Teams.Apps.Sustainability.Infrastructure.Migrations
                     URI = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsEnabled = table.Column<bool>(type: "bit", nullable: true),
                     IsNewsEnabled = table.Column<bool>(type: "bit", nullable: true),
+                    yammerGroupId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsEventsEnabled = table.Column<bool>(type: "bit", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
